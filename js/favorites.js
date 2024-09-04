@@ -46,31 +46,28 @@ export function favorites() {
       console.log("Produktet er allerede tilføjet til favoritter");
     }
   }
-
   const favBtn = document.querySelectorAll(".favBtn");
   favBtn.forEach((btn) => {
     btn.addEventListener("click", addToFav);
   });
 
-  function removeFormFav() {
-    /*  const productID = e.target.id;
-    const productToRemove = products.find((product) => product.id == productID);
+  function removeFromFav() {
+    const favRemoveBtn = document.querySelectorAll(".removeBtn");
+    favRemoveBtn.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const productID = e.target.id;
+        const indexOfFav = favorites.findIndex(
+          (product) => product.id == productID
+        );
+        console.log(indexOfFav);
 
-    const exist = favorites.find((product) => product.id == productToRemove.id);
+        favorites.splice(indexOfFav, 1);
 
-    if (!exist) {
-      favorites.splice(productToRemove);
+        localStorage.setItem("favList", JSON.stringify(favorites));
 
-      //Stringify: For at gemme JavaScript objekter i localStorage, skal de først omdannes til tekst/'string' - Det sørger 'stringify' funktionen for
-      localStorage.setItem("favList", JSON.stringify(favorites));
-
-      renderFavoriteList();
-    } */
+        renderFavoriteList();
+      });
+    });
   }
-  const favRemoveBtn = document.querySelectorAll(".removeBtn");
-  favRemoveBtn.forEach((btn) => {
-    btn.addEventListener("click", removeFormFav);
-  });
-
-  renderFavoriteList();
+  removeFromFav();
 }
